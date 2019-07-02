@@ -20,6 +20,14 @@ public class Bank {
 		this.accounts = accounts;
 	}
 
+	/**
+	 * If there is no customer with customerID, it creates a new customer and adds
+	 * it to the user list
+	 * 
+	 * @param customer
+	 * @return true if customer do not exist and is added to list otherwise return
+	 *         false
+	 */
 	public boolean addCustomer(Customer customer) {
 		if (!customers.contains(customer)) {
 			customers.add(customer);
@@ -28,6 +36,14 @@ public class Bank {
 		return false;
 	}
 
+	/**
+	 * Deletes a customer with the customerID from the user list, as well as all its
+	 * accounts
+	 * 
+	 * @param customerId
+	 * @return true if customer is removed from list, and if all its accounts are
+	 *         removed
+	 */
 	public boolean deleteCustomer(int customerId) {
 		boolean deletedCustomer = false;
 		for (Customer customer : customers) {
@@ -44,10 +60,14 @@ public class Bank {
 				deletedAccount = true;
 			}
 		}
-		
+
 		return deletedCustomer && deletedAccount;
 	}
 
+	/**
+	 * Display a list of customers with all information about customerID, name of
+	 * customer and its address
+	 */
 	public void listCustomers() {
 		System.out.println();
 		System.out.println(" >>>> LIST OF CUSTOMERS <<<< ");
@@ -57,6 +77,11 @@ public class Bank {
 		}
 	}
 
+	/**
+	 * Display all accounts of customer with given customerID
+	 * 
+	 * @param customerId
+	 */
 	public void listCustomerAccount(int customerId) {
 		System.out.println();
 		System.out.println("ACCOUNTS OF CUSTOMER WITH ID " + customerId);
@@ -74,6 +99,15 @@ public class Bank {
 		}
 	}
 
+	/**
+	 * If account do not exist, but customer with appropriate ID exist, added it to
+	 * account list, otherwise create a new customer and added it to list of
+	 * customers
+	 * 
+	 * @param account
+	 * @param customer
+	 * @return true if account do not exist, otherwise return false
+	 */
 	public boolean addAccountOrCreateCustomerIfAccountNotExist(Account account, Customer customer) {
 		if (!accounts.contains(account)) {
 			accounts.add(account);
@@ -85,6 +119,12 @@ public class Bank {
 
 	}
 
+	/**
+	 * Remove a account with given iBan from list
+	 * 
+	 * @param iBan
+	 * @return true if account is removed, otherwise return false
+	 */
 	public boolean deleteAccount(int iBan) {
 		for (Account account : accounts) {
 			if (account.getIBan() == iBan) {
@@ -95,6 +135,9 @@ public class Bank {
 		return false;
 	}
 
+	/**
+	 * Display a information for every account in list
+	 */
 	public void listAccount() {
 		System.out.println();
 		System.out.println(">>>> LIST OF ACCOUNTS <<<< ");
@@ -110,6 +153,15 @@ public class Bank {
 		}
 	}
 
+	/**
+	 * Performs a bank transfer amount from a bank account with an identifier
+	 * fromIBAN to a bank account with a toIBAN identifier, if possible
+	 * 
+	 * @param fromIBan
+	 * @param toIBan
+	 * @param amount
+	 * @return true if transfer is done, otherwise return false
+	 */
 	public boolean transfer(int fromIBan, int toIBan, double amount) {
 		boolean withdrew = false;
 		boolean deposited = false;
@@ -127,12 +179,15 @@ public class Bank {
 		return withdrew && deposited;
 	}
 
+	/**
+	 * Puts the entered withdraw to an account with entered iBan
+	 */
 	public void callWithdraw() {
 		try (Scanner consoleInput = new Scanner(System.in)) {
 
 			System.out.println("Enter account iban -> ");
 			int iBan = consoleInput.nextInt();
-			System.out.println("Enter deposit ->");
+			System.out.println("Enter withdraw ->");
 			int withdrow = consoleInput.nextInt();
 
 			for (Account account : accounts) {
@@ -143,6 +198,9 @@ public class Bank {
 		}
 	}
 
+	/**
+	 * Puts the entered deposit to an account with entered iBan
+	 */
 	public void callDeposit() {
 		try (Scanner consoleInput = new Scanner(System.in)) {
 
@@ -160,6 +218,10 @@ public class Bank {
 
 	}
 
+	/**
+	 * Display a information for name of bank, its address, information about number
+	 * of customers and number of accounts
+	 */
 	public void displayBankInformation() {
 		int accountsLength = accounts.size();
 		int customersLength = customers.size();

@@ -19,10 +19,26 @@ public abstract class Account {
 		this.amount = amount;
 	}
 
+	/**
+	 * If deposit is entered balance will be changed
+	 * 
+	 * @param deposit
+	 * @return balance in account
+	 */
 	public abstract double deposit(double deposit);
 
+	/**
+	 * If withdraw is entered and if is possible to change balance, it will changed
+	 * 
+	 * @param withdraw
+	 * @return true if balance is changed, otherwise return false
+	 */
 	public abstract boolean withdraw(double withdraw);
 
+	/**
+	 * Information about account iBan, owner of account by ID and balance in account
+	 * will be displayed
+	 */
 	public void display() {
 		System.out.println("IBAN: " + this.getIBan());
 		System.out.println("Owner ID: " + this.getOwnerId());
@@ -41,10 +57,22 @@ public abstract class Account {
 		return amount;
 	}
 
+	/**
+	 * Balance can be increased or decreased depending on the parameters entered
+	 * 
+	 * @param amount
+	 * @param increase
+	 */
 	public void changeBalance(double amount, boolean increase) {
 		this.amount = increase ? this.amount + amount : this.amount - amount;
 	}
 
+	/**
+	 * Decreasing balance is possible only if given amount is greater than current
+	 * 
+	 * @param amount
+	 * @return false if is not possible to decrease balance, otherwise return true
+	 */
 	public boolean isPossibleToDecreaseBalance(double amount) {
 		if (this.amount < amount) {
 			System.out.println("Not enough money in the account!");

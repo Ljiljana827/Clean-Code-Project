@@ -7,6 +7,16 @@ import bg.sofia.uni.fmi.bank.account.SavingsAccount;
 
 public class AccountFactory {
 
+	/**
+	 * Creates an account with type given by parameter
+	 * 
+	 * @param accountType
+	 * @param iBan
+	 * @param ownerId
+	 * @param amount
+	 * @param typeSpecificParam
+	 * @return a requested account type
+	 */
 	public static Account createAccount(String accountType, int iBan, int ownerId, double amount,
 			double typeSpecificParam) {
 

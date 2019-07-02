@@ -25,6 +25,9 @@ public class Customer {
 		return address;
 	}
 
+	/**
+	 * Information of customerID, customer name and its address will be displayed
+	 */
 	public void display() {
 		System.out.println("Customer ID: " + id);
 		System.out.println("Customer name: " + name);
